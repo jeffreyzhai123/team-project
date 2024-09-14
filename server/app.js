@@ -12,7 +12,7 @@ const corsOptions = {
 };
 
 const jwtVerifier = jwtVerify(`https://collablauncher.kinde.com`, {
-  audience: "",
+  audience: "https://localhost:3001",
 });
 
 app.use(cors(corsOptions));

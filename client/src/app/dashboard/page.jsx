@@ -1,4 +1,4 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getKindeServerSession, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Dashboard() {
   const { getAccessTokenRaw } = getKindeServerSession();
@@ -18,6 +18,10 @@ export default async function Dashboard() {
       <h1 className="text-4xl font-bold text-center">
         I HATE 310, but server protected
       </h1>
+
+      <LogoutLink className="mt-10 space-x-3">
+        LOG OUT
+      </LogoutLink>
     </div>
   );
 }
