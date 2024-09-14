@@ -6,9 +6,9 @@ const app = express();
 const port = 3001;
 
 const corsOptions = {
-  origin: '*', // Allow all origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow these HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
+  origin: "*", // Allow all origins
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow these HTTP methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
 };
 
 const jwtVerifier = jwtVerify(`https://collablauncher.kinde.com`, {
