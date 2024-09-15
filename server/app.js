@@ -1,5 +1,6 @@
 import express from "express";
 import { jwtVerify } from "@kinde-oss/kinde-node-express";
+import { query } from "../shared/db.js";
 import cors from "cors";
 
 const app = express();
@@ -10,6 +11,9 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allow these HTTP methods
   allowedHeaders: ["Content-Type", "Authorization"], // Allow these headers
 };
+
+const dataFromDb = await query("SELECT * FROM users");
+console.log(dataFromDb.rows);
 
 const jwtVerifier = jwtVerify(`https://collablauncher.kinde.com`, {
   audience: "https://localhost:3001",
