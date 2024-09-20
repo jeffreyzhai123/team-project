@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import cors from "cors";
 
 const app = express();
-const port = 3001;
+const port = 4000;
 
 const corsOptions = {
   origin: "*", // Allow all origins
@@ -13,7 +13,7 @@ const corsOptions = {
 };
 
 const jwtVerifier = jwtVerify(`https://collablauncher.kinde.com`, {
-  audience: "https://localhost:3001",
+  audience: "https://localhost:4000",
 });
 
 const prisma = new PrismaClient();
@@ -48,14 +48,40 @@ app.get("/users", async (req, res) => {
 });
 
 // Create a new user
-app.post("/users", async (req, res) => {
+app.post("/users", jwtVerifier, async (req, res) => {
   try {
-    const user = await prisma.user.create({
-      data: {
-        email: req.body.email,
-        name: req.body.name,
+    const { id, email, username } = req.body;
+
+    // Check if user with the same id, email, or username already exists
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { id: id },
+          { email: email },
+          { username: username },
+        ],
       },
     });
+
+    if (existingUser) {
+      console.log("User with the same id, email, or username already exists");
+      return res.status(201).json({
+        message: 'User with the same id, email, or username already exists',
+      });
+    }
+
+    const user = await prisma.user.create({
+      data: {
+        id: req.body.id,
+        email: req.body.email,
+        username: req.body.username,
+        name: `${req.body.given_name} ${req.body.family_name}`,
+        picture: req.body.picture,
+      },
+    });
+
+    console.log("User created successfully");
+    
     res.status(201).json(user);
   } catch (err) {
     res.status(500).json({
@@ -65,29 +91,11 @@ app.post("/users", async (req, res) => {
 });
 
 //get user by id
-app.get('/users/:id', async (req, res) => {
+app.get('/users/:id', jwtVerifier, async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        id: Number(req.params.id),
-      },
-    });
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Update a user
-app.put("/users/:id", async (req, res) => {
-  try {
-    const user = await prisma.user.update({
-      where: {
-        id: Number(req.params.id),
-      },
-      data: {
-        name: req.body.name,
-        email: req.body.email,
+        id: String(req.params.id),
       },
     });
     res.status(200).json(user);
@@ -101,20 +109,13 @@ app.delete('/users/:id', async (req, res) => {
   try {
     const user = await prisma.user.delete({
       where: {
-        id: Number(req.params.id),
+        id: String(req.params.id),
       },
     });
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-});
-
-app.get("/api/protected", jwtVerifier, (req, res) => {
-  console.log("Valid Token!");
-  res.json({
-    message: "You have accessed the protected endpoint!",
-  });
 });
 
 app.listen(port, () => {

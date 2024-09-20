@@ -1,9 +1,9 @@
-import {withAuth} from "@kinde-oss/kinde-auth-nextjs/middleware";
+import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
 export default function middleware(req) {
   return withAuth(req, {
-    isReturnToCurrentPage: true
+    isReturnToCurrentPage: true,
   });
 }
 export const config = {
-  matcher: ["/dashboard", "/client"]
+  matcher: ["/dashboard", "/client"],
 };
