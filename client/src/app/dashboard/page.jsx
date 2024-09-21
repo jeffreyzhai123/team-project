@@ -3,8 +3,8 @@ import {
   useKindeBrowserClient,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs";
-import { createUser } from "../../services/userServices.js";
-import { useEffect, useState } from "react";
+import { createUser } from "../../services/userService.js";
+import { useEffect } from "react";
 
 export default function Dashboard() {
   const { user, accessTokenRaw } = useKindeBrowserClient();
@@ -12,7 +12,6 @@ export default function Dashboard() {
   useEffect(() => {
     async function register() {
       if (user) {
-        console.log("User:", user);
         try {
           const data = await createUser(user, accessTokenRaw);
           console.log("User created:", data);
@@ -23,7 +22,7 @@ export default function Dashboard() {
       }
     }
     register();
-  }, [ user ]);
+  }, [accessTokenRaw]);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
