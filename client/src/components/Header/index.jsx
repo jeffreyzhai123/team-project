@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { opacity, background } from "./animation";
 import Nav from "./nav";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+import Magnetic from "../common/Magnetic/index";
+import Rounded from "../common/Rounded/index";
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false);
@@ -38,16 +40,20 @@ export default function Header() {
           animate={!isActive ? "open" : "closed"}
           className={style.shopContainer}
         >
-          <div className={style.el}>
-            <LoginLink>
-              <p>Log In</p>
-            </LoginLink>
-          </div>
-          <div className={style.el}>
-            <RegisterLink>
-              <p>Get Started</p>
-            </RegisterLink>
-          </div>
+          <Magnetic>
+            <div className={style.el}>
+              <LoginLink>
+                <p>Log In</p>
+              </LoginLink>
+            </div>
+          </Magnetic>
+          <Rounded>
+            <div className={style.el}>
+              <RegisterLink>
+                <p>Get Started</p>
+              </RegisterLink>
+            </div>
+          </Rounded>
         </motion.div>
       </div>
       <motion.div
