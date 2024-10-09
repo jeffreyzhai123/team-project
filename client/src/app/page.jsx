@@ -6,6 +6,7 @@ import Preloader from "../components/Preloader/index";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Lenis from "lenis";
+import { UserProvider } from "./context/UserContext";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,12 +29,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={style.main}>
-      <AnimatePresence mode="wait">
-        {isLoading && <Preloader />}
-      </AnimatePresence>
-      <Header />
-      <Landing />
-    </div>
+  
+    
+     <UserProvider>
+        <div className={style.main}>
+          <AnimatePresence mode="wait">
+            {isLoading && <Preloader />}
+          </AnimatePresence>
+          <Header />
+          <Landing />
+      </div>
+      
+    </UserProvider>
+   
   );
 }

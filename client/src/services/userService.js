@@ -20,3 +20,21 @@ export async function createUser(user, accessTokenRaw) {
     throw error;
   }
 }
+
+export async function getUserById(id) {
+  try{
+    const response = await fetch(`http://localhost:4000/users/${id}`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}; Cannot get user by id`);
+    }
+
+    const data = await response.json();
+    return data;
+
+  }catch(error){
+    console.error("ERROR: " + error)
+    throw error;
+  }
+  
+}
