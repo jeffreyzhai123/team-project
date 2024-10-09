@@ -47,7 +47,7 @@ export default function Dashboard() {
       </h1>
 
       {/* help me to see the profile page..can be changed later */}
-      <Link href="../pages/Profile">My Profile</Link>
+      <Link href="../profile">My Profile</Link>
      
       <LogoutLink className="mt-10 space-x-3">LOG OUT</LogoutLink>
     </div>

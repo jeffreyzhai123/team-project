@@ -1,8 +1,8 @@
 //Profile page
 "use client";
-import { UserContext } from "../../context/UserContext.js";
+import { UserContext } from "../context/UserContext.js";
 import { useContext, useEffect, useState } from "react";
-import { getUserById } from "../../../services/userService.js";
+import { getUserById } from "../../services/userService.js";
 
 export default function Profile() {
   const { user, setUser } = useContext(UserContext);
