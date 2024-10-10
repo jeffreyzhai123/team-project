@@ -1,0 +1,118 @@
+
+.pageContainer {
+    background-color: rgb(69, 139, 224);
+    display: flex;
+    justify-content: center; 
+    width: 80%;
+    margin: 20px auto;
+    height: 100vh;
+    flex-wrap: wrap;
+    
+}
+
+.profilAndInfoContainer {
+    width: 100%;
+    
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.profilePicContainer {
+    
+    width: 20%;
+    border-radius: 50%;
+    justify-content: center; 
+    align-items: center;    
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    margin: 2% auto;
+    aspect-ratio: 1/1;
+    
+}
+
+
+ 
+
+
+.infoContainer {
+    background-color: aliceblue;
+    border-radius: 30px;
+    width: 72%;
+    margin: 2% auto;
+ 
+    
+} 
+
+.infoTable {
+    padding: 2%;
+    width: 92%;
+    margin: 4%;
+    margin-bottom: 1%;
+    background-color:  rgb(69, 139, 224);
+    border-radius: 20px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow: hidden;
+
+}
+
+
+
+.postContainer {
+   
+    background-color: azure;
+    display: grid;
+    height: 100vh;
+    width: 100%;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 30px;
+
+
+}
+
+.buttonContainer {
+    
+    padding: 2px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.editButton {
+    background-color: green;
+    width: 60px;
+    border-radius: 2px;
+    color: aliceblue;
+    margin-right: 4%;
+}
+
+.editButton:hover{
+    background-color: rgb(12, 82, 12);
+    width: 60px;
+    border-radius: 2px;
+    color: aliceblue;
+    margin-right: 4%;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.infoTable th {
+  color: rgb(10, 37, 76);
+  justify-content: left;  
+  text-align: left;
+  padding: 10px;
+  background-color: rgb(131, 176, 230);
+  width: 40%;
+
+}
+
+.infoTable td {
+    padding: 10px;
+    color: rgb(207, 224, 248);
+  
+}
+.infoTable tr {
+    border: 1px solid white;
+   
+}

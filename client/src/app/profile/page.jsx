@@ -1,8 +1,11 @@
 //Profile page
 "use client";
+import style from "./page.module.scss";
 import { UserContext } from "../context/UserContext.js";
 import { useContext, useEffect, useState } from "react";
 import { getUserById } from "../../services/userService.js";
+import Image from "next/image";
+
 
 export default function Profile() {
   const { user, setUser } = useContext(UserContext);
@@ -43,16 +46,52 @@ export default function Profile() {
   }
 
   return (
-    <div>
-      <div className="profile_container">
-        <p>{userInDb.id ? userInDb.id : ""}</p>
-        <p>{userInDb.username ? userInDb.username : ""}</p>
-        <p>{userInDb.email ? userInDb.email : ""}</p>
-        <p>{userInDb.name ? userInDb.name : ""}</p>
-        <p>{userInDb.picture ? userInDb.picture : ""}</p>
-        <p>{userInDb.description ? userInDb.description : ""}</p>
-        hii
+    <div className={style.pageContainer}>
+      <div className={style.profilAndInfoContainer}>
+        <div className={style.profilePicContainer}>
+
+          <Image 
+          src="/images/meeting.png" 
+          alt="profile pic"
+          object-fit="cover"
+          fill = {true}
+          />
+
+        </div>
+
+        <div className={style.infoContainer}>
+          
+          <table className={style.infoTable}>
+            
+            <tbody>
+              <tr>
+                  <th>Username</th>
+                  <td>{userInDb.username ? userInDb.username : ""}</td>
+              </tr>
+              <tr>
+                  <th>Email</th>
+                  <td>{userInDb.email ? userInDb.email : ""}</td>
+              </tr>
+              <tr>
+                  <th>Name</th>
+                  <td>{userInDb.name ? userInDb.name : ""}</td>
+              </tr>
+              <tr>
+                  <th>Personal Description</th>
+                  <td>{userInDb.description ? userInDb.description : ""}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div className={style.buttonContainer}>
+            <button className={style.editButton}>Edit</button>
+          </div>
+     
+        </div>
       </div>
+
+      <div className={style.postContainer}></div>
+
     </div>
   );
 }
